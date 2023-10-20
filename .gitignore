@@ -1,6 +1,8 @@
+*
+!*.*
+!*/
+*.o
 .cache/
 compile_commands.json
-./chip8
-*.o
-tests/roms/*
-assets/fonts/*
+tests/
+assets/

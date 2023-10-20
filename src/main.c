@@ -1,9 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#include <raylib.h>
-///#define RAYGUI_IMPLEMENTATION
-///#include <raygui.h>
+#include "raylib.h"
 
 #define ORIGINAL_CHIP8
 #include "chip8/chip8.h"
@@ -13,7 +11,7 @@
 #define SCREEN_WIDTH (PIXEL_SIZE * CHIP8_SCREEN_WIDTH)
 #define SCREEN_HEIGHT (PIXEL_SIZE * CHIP8_SCREEN_HEIGHT)
 
-//#define DEBUG
+#define DEBUG
 
 #define FPS 60
 
@@ -68,7 +66,7 @@ static const char font_path[] = "./assets/fonts/slkscr.ttf";
 
 int main(void) {
 #ifdef DEBUG
-    SetTraceLogLevel(LOG_ERROR | LOG_WARNING);
+    SetTraceLogLevel(LOG_ALL);
 #else
     SetTraceLogLevel(LOG_NONE);
 #endif

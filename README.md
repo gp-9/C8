@@ -1,5 +1,5 @@
 ## C8
-A Chip-8 and Super Chip-8 emulator written in C and
+A simple Chip-8 and Super Chip-8 emulator written in C and
 ![raylib](https://github.com/raysan5/raylib)
 
 ### Installation
@@ -24,7 +24,7 @@ $ make clean && make
 to make a clean build.
 
 ### Resources
-![guide followed](https://tobiasvl.github.io/blog/write-a-chip-8-emulator/)
-![test ROM](https://github.com/corax89/chip8-test-rom)
-![more information on the topic](https://chip-8.github.io/links/)
-![more CC0 ROMs to test the emulator](https://johnearnest.github.io/chip8Archive/)
+![guide followed](https://tobiasvl.github.io/blog/write-a-chip-8-emulator/)  
+![test ROM](https://github.com/corax89/chip8-test-rom)  
+![more information on the topic](https://chip-8.github.io/links/)  
+![more CC0 ROMs to test the emulator](https://johnearnest.github.io/chip8Archive/)  

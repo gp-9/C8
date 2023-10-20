@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include <raylib.h>
+#include "raylib.h"
 
 #define MAX_MEM 4096
 #define AVL_MEM (MAX_MEM - 0x200)
