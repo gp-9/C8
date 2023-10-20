@@ -9,9 +9,11 @@ pkgs.stdenv.mkDerivation {
       gcc 
       pkg-config 
     ];
+
     buildInputs = with pkgs; [ 
       raylib 
       valgrind 
+      glfw
     ];
 
     shellHook = ''

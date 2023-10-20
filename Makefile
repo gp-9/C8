@@ -1,4 +1,4 @@
-cc := clang
+cc := gcc
 
 srcs := $(wildcard src/*.c) $(wildcard src/**/*.c)
 objs := $(patsubst %.c,%.o,$(srcs))

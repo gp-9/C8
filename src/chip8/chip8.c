@@ -134,76 +134,58 @@ static inline Chip8Res decode_eight(Chip8State *state, Chip8Inst instruction) {
 
     Chip8Res return_val;
     switch (last_nibble) {
-        case 0:
-            {
+        case 0: {
                 *val1p = *val2p;
                 return_val = CHIP8_SUCCESS;
-            }
-            break;
-        case 1:
-            {
+            } break;
+        case 1: {
                 *val1p |= *val2p;
                 return_val = CHIP8_SUCCESS;
-            }
-            break;
-        case 2:
-            {
+            } break;
+        case 2: {
                 *val1p &= *val2p;
                 return_val = CHIP8_SUCCESS;
-            }
-            break;
-        case 3:
-            {
+            } break;
+        case 3: {
                 *val1p ^= *val2p;
                 return_val = CHIP8_SUCCESS;
-            }
-            break;
-        case 4: 
-            {
+            } break;
+        case 4: {
                 uint8_t test = *val1p + *val2p;
                 if (test < *val1p || test < *val2p) {
                     state->registers[0xF] = 1;
                 }
                 *val1p += *val2p;
                 return_val = CHIP8_SUCCESS;
-            }
-            break;
-        case 5:
-            {
+            } break;
+        case 5: {
                 if (*val1p > *val2p) state->registers[0xF] = 1;
                 if (*val2p > *val1p) state->registers[0xF] = 0;
                 *val1p -= *val2p;
                 return_val = CHIP8_SUCCESS;
-            }
-            break;
-        case 6:
-            {
+            } break;
+        case 6: {
 #ifdef ORIGINAL_CHIP8
                 *val1p = *val2p;
 #endif
                 state->registers[0xF] = *val1p & 0x01;
                 *val1p >>= 1;
                 return_val = CHIP8_SUCCESS;
-            }
-            break;
-        case 7:
-            {
+            } break;
+        case 7: {
                 if (*val1p > *val2p) state->registers[0xF] = 1;
                 if (*val2p > *val1p) state->registers[0xF] = 0;
                 *val1p = *val2p - *val1p;
                 return_val = CHIP8_SUCCESS;
-            }
-            break;
-        case 0xE:
-            {
+            } break;
+        case 0xE: {
 #ifdef ORIGINAL_CHIP8
                 *val1p = *val2p;
 #endif
                 state->registers[0xF] = *val1p & 0x80;
                 *val1p <<= 1;
                 return_val = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
         default:
             return_val = CHIP8_ERROR;
     }
@@ -301,37 +283,28 @@ static inline Chip8Res decode_F(Chip8State *state, Chip8Inst instruction) {
     Chip8Res returned;
 
     switch (last_byte) {
-        case 0x07:
-            {
+        case 0x07: {
                 *val = state->delay_timer;
                 returned = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
 
-        case 0x15:
-            {
+        case 0x15: {
                 state->delay_timer = *val;
                 returned = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
             
-        case 0x18:
-            {
+        case 0x18: {
                 state->sound_timer = *val;
                 returned = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
 
-        case 0x1E:
-            {
+        case 0x1E: {
                 state->ir += *val;
                 if (state->ir > 0x1000) state->registers[0xF] = 1;
                 returned = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
 
-        case 0x0A:
-            {
+        case 0x0A: {
                 KeyboardKey key = GetKeyPressed();
                 if (key != 0) {
                     for (int i = 0; i < 0xF; ++i) {
@@ -344,20 +317,16 @@ static inline Chip8Res decode_F(Chip8State *state, Chip8Inst instruction) {
                 }
 
                 returned = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
 
-        case 0x29:
-            {
+        case 0x29: {
                 uint8_t character = *val & 0x0f;
                 state->ir = DEFAULT_FONT_ADDR + character * 5;
 
                 returned = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
 
-        case 0x33:
-            {
+        case 0x33: {
                 int n1 = *val % 10;
                 int n2 = (*val / 10) % 10;
                 int n3 = (*val / 100) % 10;
@@ -365,26 +334,21 @@ static inline Chip8Res decode_F(Chip8State *state, Chip8Inst instruction) {
                 state->memory[state->ir + 1] = n2;
                 state->memory[state->ir + 2] = n1;
                 returned = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
 
-        case 0x55:
-            {
+        case 0x55: {
                 for (int i = 0; i <= reg; ++i) {
                     state->memory[state->ir + i] = state->registers[i];
                 }
                 returned = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
 
-        case 0x65:
-            {
+        case 0x65: {
                 for (int i = 0; i <= reg; ++i) {
                     state->registers[i] = state->memory[state->ir + i];
                 }
                 returned = CHIP8_SUCCESS;
-            }
-            break;
+            } break;
 
         default:
             returned = CHIP8_ERROR;
